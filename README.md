@@ -1,110 +1,85 @@
-# Optifit AI
-(AI-powered Fitness & Nutrition Consultant)
+# OptiFit AI 🏋️‍♂️🍎🤖
 
-## Project Overview
-FitGenie AI is a MERN-based AI fitness assistant that provides personalized workout routines, meal plans, and health tips. It uses prompt engineering, structured outputs, function calling, and RAG (Retrieval-Augmented Generation) to deliver accurate and dynamic responses.
+An AI-powered fitness assistant built with the MERN stack, offering personalized workouts, meal plans, and health insights.
 
-### Key Features
-- ✅ Personalized Workout Plans (Home/Gym)
+## 📌 Overview
 
-- ✅ Calorie-based Meal Suggestions
+OptiFit AI combines the flexibility of the MERN stack with AI capabilities to help users achieve their health and fitness goals.
+The app:
 
-- ✅ Fitness Goal Tracking (Weight Loss, Muscle Gain, etc.)
+Generates personalized workout plans based on user preferences and fitness level.
 
-- ✅ Integration with Wearables for real-time data
+Suggests custom meal plans aligned with dietary needs.
 
-- ✅ RAG-powered updates with latest health and fitness guidelines
+Offers AI-driven health insights for better decision-making.
 
-#### Tech Stack
+## 🚀 Features
+✅ AI-generated workout routines tailored to the user
+✅ Smart meal planning based on nutrition data
+✅ Progress tracking with visual analytics
+✅ Responsive UI for mobile & desktop
+✅ Scalable backend API with efficient data retrieval
 
-- Frontend: React.js
+## 🛠 Tech Stack
+Frontend: React.js, Redux/Context API, TailwindCSS / Material-UI
 
-- Backend: Node.js + Express.js
+Backend: Node.js, Express.js
 
-- Database: MongoDB (Mongoose for ORM)
+Database: MongoDB (Mongoose)
 
-- AI Integration: OpenAI GPT API
+AI Integration: OpenAI API / TensorFlow.js (for recommendation logic)
 
-- RAG: FAISS or Pinecone for vector search
+Deployment: Vercel / Netlify (Frontend), Render / Heroku (Backend)
 
-#### APIs:
 
-Nutrition Data API (Edamam, Spoonacular)
+### ⚙️ Installation & Setup
+1️⃣ Clone the repository
 
-Wearable API (Fitbit, Google Fit)
+git clone https://github.com/kalviumcommunity/OptiFit-AI.git
+cd OptiFit-AI
 
-Authentication: JWT
+2️⃣ Install dependencies
 
-Deployment: Docker + AWS / Vercel
 
-### AI Concepts Implementation
-
-1. Prompting
-
-2. Structured Output
-
-3. Function Calling
-
-4. Retrieval-Augmented Generation (RAG)
-
-#### Project Workflow
-
-- User Inputs → Age, gender, goal, diet, budget.
-
-- Prompt Creation → Combine user + system prompts.
-
-- OpenAI Model → Returns structured output (JSON).
-
-- Function Calls → Fetch calories, recipes.
-
-- RAG Layer → Add latest research & recipes.
-
-- Final Response → Sent to frontend for display.
-
-### Installation
-
-Backend Setup
-
-# Clone repo
-git clone https://github.com/your-username/fitgenie-ai.git
-cd fitgenie-ai
-
-# Install backend dependencies
+# Backend
+cd backend
 npm install
 
-# Create .env file
-OPENAI_API_KEY=your_key
-MONGODB_URI=your_mongo_uri
+# Frontend
+cd ../frontend
+npm install
 
-# Start server
+3️⃣ Run the project
 
+# Backend
+cd backend
 npm run dev
 
-#### Frontend Setup
-
-cd client
-npm install
+# Frontend
+cd ../frontend
 npm start
 
-### Usage
+## 📊 API Endpoints
+Method	Endpoint	Description
+POST	/api/users	Register new user
+POST	/api/auth/login	Authenticate user
+GET	/api/workouts	Get AI-generated workout plan
+GET	/api/meals	Get personalized meal plan
+GET	/api/insights	Retrieve AI-based health insights
 
-Access API at: http://localhost:5000
+### 📈 Evaluation Criteria Alignment
+✅ Correctness – Returns accurate AI-generated plans based on user data.
+✅ Efficiency – Uses optimized queries and caching for faster responses.
+✅ Scalability – Backend API supports high traffic with load balancing potential.
 
-Frontend runs on: http://localhost:3000
+#### 🤝 Contributing
+Contributions are welcome!
 
-#### Evaluation Criteria
+Fork the repo
 
-Correctness: Accurate diet & workout plans.
+Create a feature branch
 
-Efficiency: Fast API responses with caching.
+Commit changes
 
-Scalability: Handles multiple users with optimized MongoDB queries.
+Open a Pull Request
 
-### Next Steps
-- ✅ Add voice chatbot.
-
-- ✅ Connect to meal delivery APIs.
-
-- ✅ Add AI-powered progress photo analysis.
-
-## Last Updated: Aug 6, 2025
