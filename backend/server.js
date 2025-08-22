@@ -6,6 +6,7 @@ import promptRouter from './src/routes/prompt.js';
 import alertsRouter from './src/routes/alerts.js';
 import functionAlertsRouter from './src/routes/functionalerts.js';
 import { chainOfThoughtChecklist } from './src/controllers/chainofthoughts.js';
+import dynamicPromptingRouter from './src/routes/dynamic-prompting.js'
 const app = express();
 
 app.use(cors());
@@ -17,6 +18,7 @@ app.use("/api/health", healthRouter);
 app.use("/api/alerts", alertsRouter);
 app.use("/api/function-alerts", functionAlertsRouter);
 app.use("/api/chain-of-thought", chainOfThoughtChecklist);
+app.use("/api/dynamic-prompt", dynamicPromptingRouter); 
 
 // 404 handler
 app.use((req, res) => res.status(404).json({ ok: false, error: 'Not Found' }));
