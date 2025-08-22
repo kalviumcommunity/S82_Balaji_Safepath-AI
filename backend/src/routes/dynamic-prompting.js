@@ -1,18 +1,15 @@
 import express from "express";
 import fetch from "node-fetch";
+import { countTokens, truncateToTokens } from "../utils/tokenizer.js";
 
 const router = express.Router();
 
-/**
- * Dynamic Prompting Route
- * Builds the prompt dynamically based on user input (disasterType, location, language, profile).
- */
 router.post("/", async (req, res) => {
   try {
     const { disasterType, location, lang = "en", profile = "general" } = req.body;
 
-    // Dynamically build prompt based on inputs
-    const dynamicPrompt = `
+    // Build dynamic prompt
+    let dynamicPrompt = `
 You are SafePath AI, a disaster preparedness assistant.
 Context:
 - Disaster Type: ${disasterType}
@@ -25,7 +22,14 @@ Generate a clear, step-by-step disaster preparedness checklist.
 Tailor it to the user profile and location. Respond in ${lang}.
 `;
 
-    // Send request to OpenRouter (or whichever AI backend you’re using)
+    // Token counting
+    const tokenCount = countTokens(dynamicPrompt);
+    console.log(`🧮 Dynamic Prompt Token Count: ${tokenCount}`);
+
+    // Truncate if too large
+    dynamicPrompt = truncateToTokens(dynamicPrompt, 512);
+
+    // OpenRouter API call
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -33,22 +37,17 @@ Tailor it to the user profile and location. Respond in ${lang}.
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "mistralai/mistral-7b-instruct:free",
-        messages: [
-          {
-            role: "user",
-            content: dynamicPrompt
-          }
-        ]
+        model: "mistralai/mistral-7b-instruct:free", // you can swap for another
+        messages: [{ role: "user", content: dynamicPrompt }]
       })
     });
 
     const data = await response.json();
-    console.log("Dynamic Prompting Response:", JSON.stringify(data, null, 2));
 
     res.json({
       ok: true,
       source: "dynamic_prompting",
+      tokens_used: tokenCount,
       checklist: data?.choices?.[0]?.message?.content || "No response generated."
     });
   } catch (err) {
