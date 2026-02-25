@@ -1,5 +1,5 @@
 import express from "express";
-import { functionCallingChecklist } from "../controllers/functionCallingChecklist.js";
+import { functionCallingChecklist } from "../controllers/functioncallingchecklist.js";
 
 const router = express.Router();
 router.post("/", functionCallingChecklist);
